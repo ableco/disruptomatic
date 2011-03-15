@@ -1,0 +1,28 @@
+@import mixins.sass
+
+//----------------------------------------------------
+//  Helpers
+//----------------------------------------------------
+
+=display_font
+  font-family: sans-serif
+
+=text_font
+  font-family: Georgia, serif
+  font-size: 14px
+
+$leading: 18px
+
+//----------------------------------------------------
+//  Begin Styles
+//----------------------------------------------------
+  
+body
+  +text_font
+  line-height: $leading
+
+h1, h2, h3, h4
+  +display_font
+
+p
+  margin: 0 0 $leading

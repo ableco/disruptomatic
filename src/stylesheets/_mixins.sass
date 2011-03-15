@@ -1,0 +1,206 @@
+//----------------------------------------------------
+//  Clearing
+//----------------------------------------------------
+
+=clear
+  clear: both
+  
+=clearfix
+  overflow: auto
+  overflow: -moz-scrollbars-none
+  // This makes ie6 get layout
+  display: inline-block
+  // and this puts it back to block
+  &
+    display: block
+
+=clearfix_old
+  *display: inline-block
+  &:after
+    content: " "
+    display: block
+    height: 0
+    clear: both
+    visibility: hidden
+
+//----------------------------------------------------
+//  Positioning
+//----------------------------------------------------
+
+=absolute
+  position: absolute
+  
+=relative
+  position: relative
+
+=fixed
+  position: fixed
+
+=left
+  float: left
+  display: inline
+
+=right
+  float: right
+  display: inline
+
+//----------------------------------------------------
+//  Display Options
+//----------------------------------------------------
+  
+=hide
+  display: none
+
+=block
+  display: block
+  
+=inline
+  display: inline
+  
+=inline-block
+  display: inline-block
+  
+//----------------------------------------------------
+//  Links
+//----------------------------------------------------
+
+=hover-link
+  text-decoration: none
+  
+  &:hover
+    text-decoration: underline
+
+=unstyled-link
+  color: inherit
+  text-decoration: inherit
+  cursor: inherit
+
+  &:active, &:focus
+    outline: none
+
+=link-colors($normal, $hover: false, $active: false, $visited: false, $focus: false)
+  color: $normal
+
+  @if $visited
+    &:visited
+      color: $visited
+  @if $focus
+    &:focus
+      color: $focus
+  @if $hover
+    &:hover
+      color: $hover
+  @if $active
+    &:active
+      color: $active
+      
+//----------------------------------------------------
+//  Text Formatting
+//----------------------------------------------------
+
+=text_center
+  text-align: center
+
+=text_left
+  text-align: left
+
+=text_right
+  text-align: right
+
+=text_justified
+  text-align: justified
+
+=bold
+  font-weight: bold
+
+=italic
+  font-style: italic
+
+=normal
+  font-weight: normal
+  font-style: normal
+
+
+//----------------------------------------------------
+//  Buttons and Image Replacement
+//----------------------------------------------------
+
+=image($width: false, $height: false, $url: false)
+  +block
+  text-indent: -9000px
+  overflow: hidden
+
+  @if $width
+    width: $width
+
+  @if $height
+    height: $height
+
+  @if $url
+    background: url($url) no-repeat left top
+
+=button($width: false, $height: false, $url: false)
+  +image($width,$height,$url)
+
+  &:active
+    background-position: left center
+
+  &:active
+    background-position: left bottom
+
+=input_button($width: false, $height: false, $url: false)
+  +button($width,$height,$url)
+  border: 0
+  padding: 0
+  cursor: pointer
+  line-height: 300px
+  overflow: hidden
+  font-size: 0
+
+=border-radius(!radius)
+  border-radius = !radius
+  -moz-border-radius = !radius
+  -webkit-border-radius = !radius
+
+=opacity(!value)
+  :opacity= !value
+  :filter alpha(opacity=#{!value * 100})
+  :-ms-filter "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{!value*100})"
+
+=box-shadow(!x-offset, !y-offset, !radius, !color)
+  -moz-box-shadow = !x-offset !y-offset !radius !color
+  -webkit-box-shadow = !x-offset !y-offset !radius !color
+  box-shadow = !x-offset !y-offset !radius !color
+
+//----------------------------------------------------
+//  Tabbed Navigation
+//----------------------------------------------------
+
+=horizontal_nav
+  ul
+    +clearfix
+    
+    li
+      +left
+    
+      a
+        +block
+      
+//----------------------------------------------------
+//  CSS 3
+//----------------------------------------------------
+
+=opacity($value)
+  opacity: $value
+  filter: alpha(opacity=#{$value * 100})
+  -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity=#{$value*100})"
+
+=border-radius($radius)
+  border-radius = $radius
+  -moz-border-radius = $radius
+  -webkit-border-radius = $radius
+  
+=box-shadow($x_offset, $y_offset, $radius, $color)
+  -moz-box-shadow: $x_offset $y_offset $radius $color
+  -webkit-box-shadow: $x_offset $y_offset $radius $color
+  box-shadow: $x_offset $y_offset $radius $color
